@@ -1,0 +1,23 @@
+﻿@page
+@model RazorPage.Pages.LoginModel
+
+<form class="shadow rounded-3 p-3 m-5 align-items-center justify-content-center" method="post">
+
+        <div class="form-group mx-5 my-3">
+            <label for="Email">ایمیل</label>
+            <input type="email" class="form-control" id="Email" value="@ViewData["Email"]" asp-for="LoginUser.Email" placeholder="ایمیل" />
+        </div>
+        <div class="form-group mx-5 my-3">
+            <label for="Password">رمز</label>
+            <input type="password" class="form-control" id="Password" value="@ViewData["Password"]" asp-for="LoginUser.password" placeholder="رمز" />
+        </div>
+        <button type="submit" class="btn btn-primary mx-5 my-3">ورود</button>
+</form>
+       @if(TempData["Message"] != null)
+    {
+           <script type="text/javascript">  
+            window.onload = function () {  
+                alert("@TempData["Message"]");  
+            };  
+        </script>
+    }

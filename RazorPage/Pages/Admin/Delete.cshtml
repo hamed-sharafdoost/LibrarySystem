@@ -1,0 +1,41 @@
+﻿@page
+@model RazorPage.Pages.Admin.DeleteModel
+@{
+    Layout = "./Shared/_adminLayout.cshtml";
+}
+<table class="table table-dark">
+    <thead class="table-dark">
+        <tr class="table-dark">
+        <th>شماره</th>
+        <th>اسم کتاب</th>
+        <th>نویسنده</th>
+        <th>ژانر</th>
+        <th>توضیحات</th>
+        <th>موجودی</th>
+        <th>آخرین تاریخ امانت</th>
+        </tr>
+    </thead>
+    <tbody class="table-dark">
+        @foreach(var book in Model.books)
+        {
+            <tr class="table-dark">
+                <td>@book.BooksId</td>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Genre</td>
+                <td>@book.Description</td>
+                @if(book.Availabale == true)
+                {
+                    <td>موجود</td>
+                }
+                @if(book.Availabale == false)
+                {
+                    <td>ناموجود</td>
+                }
+                <td>@book.LastBorrowdate</td>
+
+                <td>  <form method="post"><input type="submit" value="@book.BooksId" name="BooksId" /></form></td>
+            </tr>
+        }
+    </tbody>
+</table>

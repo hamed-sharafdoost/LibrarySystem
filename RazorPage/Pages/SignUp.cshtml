@@ -1,0 +1,53 @@
+﻿@page
+@model RazorPage.Pages.SignUpModel
+
+<form class="container-lg container-xxl container-md justify-content-center" method="post">
+    <div class="form-row">
+        <div class="form-group my-3">
+            <label for="Name">نام</label>
+            <input type="text" class="form-control" id="Name" placeholder="نام" asp-for="SignUp.Name" />
+        </div>
+        <div class="form-group my-3">
+            <label for="FamilyName">نام خانوادگی</label>
+            <input type="text" class="form-control" id="FamilyName" placeholder="نام خانوادگی" asp-for="SignUp.FamilyName" />
+        </div>
+    </div>
+    <div class="form-group my-3">
+        <label for="City">شهر</label>
+        <input type="text" class="form-control" id="City" placeholder="شهر" asp-for="SignUp.address.City" />
+    </div>
+    <div class="form-group my-3">
+        <label for="Street">خیابان</label>
+        <input type="text" class="form-control" id="Street" placeholder="خیابان" asp-for="SignUp.address.Street" />
+    </div>
+    <div class="form-group my-3">
+        <label for="Phone">شماره همراه</label>
+        <input type="text" class="form-control" id="Phone" placeholder="شماره همراه..." asp-for="SignUp.PhoneNumber" />
+        <span class="text-danger h6 fw-light">کیبورد خود را انگلیسی کنید!</span>
+    </div>
+      <div class="form-group my-3">
+        <label for="Email">ایمیل</label>
+        <input type="email" class="form-control" id="Email" placeholder="ایمیل" asp-for="SignUp.Email" />
+    </div>
+         <div class="form-group my-3">
+        <label for="Password">رمز</label>
+        <input type="password" class="form-control" id="Password" placeholder="رمز" asp-for="SignUp.Password" />
+    </div>
+    <button type="submit" class="btn btn-primary my-3">ثبت نام</button>
+</form>
+        @if(ViewData["Success"] != null)
+    {
+           <script type="text/javascript">  
+            window.onload = function () {  
+                alert("@ViewData["Success"]");  
+            };  
+        </script>
+    }
+        @if(ViewData["Unsuccessfull"] != null)
+    {
+           <script type="text/javascript">  
+            window.onload = function () {  
+                alert("@ViewData["Unsuccess"]");  
+            };  
+        </script>
+    }

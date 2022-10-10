@@ -1,0 +1,50 @@
+﻿@page
+@using Microsoft.EntityFrameworkCore
+@model RazorPage.Pages.CartModel
+@{
+    Layout = "_normaluserLayout";
+    int i = 0;
+    
+}
+<form method="post">
+    <table class="table table-dark">
+    <thead class="table-dark">
+        <tr>
+        <th>شماره</th>
+        <th>اسم کتاب</th>
+        <th>نویسنده</th>
+        <th>ژانر</th>
+        <th>توضیحات</th>
+        <th>مدت امانت</th>
+        <th>حذف کتاب</th>
+        </tr>
+    </thead>
+   <tbody class="table-dark">
+       @foreach(var borrow in Model.userborrower)
+       {
+                Model.borrower1 = Model._context.Borrowers.Include(c => c.Books).SingleOrDefault(b => b.BorrowerId == borrow.BorrowerId);
+                i++;
+                <tr class="table-dark">
+                <td>@i</td>
+                <td>@Model.borrower1.Books.Title</td>
+                <td>@Model.borrower1.Books.Author</td>
+                <td>@Model.borrower1.Books.Genre</td>
+                <td>@Model.borrower1.Books.Description</td>
+                <td>@Model.borrower1.BorrowExDate</td>
+                <td><input type="submit" class="bi bi-x-circle text-danger" value="@Model.borrower1.Books.BooksId" name="BooksId" /></td>
+            </tr>
+        }
+    </tbody>
+    </table>
+    @if(ViewData["disable"] == null)
+    {
+        <input type="submit" class="btn-primary btn" value="ثبت امانت" name="Sub" />
+    }
+    else
+    {
+        <input type="submit" class="btn-primary btn" value ="ثبت امانت"disabled />
+    }
+</form>
+
+
+

@@ -1,0 +1,28 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+   @if(ViewData["Success"] != null)
+    {
+           <script type="text/javascript">  
+            window.onload = function () {  
+                alert("@ViewData["Success"]");  
+            };  
+        </script>
+    }
+
+<div class="row justify-content-center align-items-center my-4">
+     <div class="col text-center">
+         <h1 class="display-2">به کتابخانه شخصی حامد خوش آمدید</h1>
+         <p class="dispaly-4 text-muted">سیستم امانت دهی شخصی</p>
+     </div>
+</div>
+     <div class="row justify-content-center align-items-center">
+         <div class="col-6 text-center">
+        <a asp-page="/SignUp" class="btn btn-primary text-white btn-lg px-4">ثبت نام</></a>
+        </div>
+        <div class="col-6 text-center">
+        <a asp-page="/Login" class="btn btn-primary text-white btn-lg px-4">ورود</></a>
+        </div>
+</div>

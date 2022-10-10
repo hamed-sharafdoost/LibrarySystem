@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Mvc
+<!DOCTYPE html>
+<html  dir="rtl" lang="fa">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RazorPage</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/RazorPage.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-toggleable-md navbar-toggleable-lg navbar-dark bg-dark box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-page="/Admin/admin">Razorpage</a>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarsupported">
+                <ul class="navbar-nav justify-content-between">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Admin/Add">اضافه</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Admin/Delete">حذف</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Admin/admin">لیست کتاب ها</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Index">خروج</a>
+                    </li>
+                </ul>
+            </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarsupported"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+        </div>
+    </nav>
+</header>
+<div class="container-lg">
+    @RenderBody()
+</div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

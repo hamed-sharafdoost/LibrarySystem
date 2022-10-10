@@ -1,0 +1,49 @@
+﻿@page
+@model RazorPage.Pages.Admin.AddModel
+@{
+    Layout = "./Shared/_adminLayout.cshtml";
+}
+<form class="shadow rounded-3 p-3 m-5 align-content-center justify-content-center" method="post">
+    <div class="row my-5 gx-3">
+        <div class="col-md-5">
+            <label for="Title" class="form-label">موضوع</label>
+            <input type="text" class="form-control" id="Title" asp-for="AddBook.Title" />
+        </div>
+        <div class="col-md-7">
+            <label for="Description" class="form-label">توضیحات</label>
+            <input type="text" class="form-control" id="Description" asp-for="AddBook.Description" />
+        </div>
+        <div class="col-md-5">
+            <label for="Genre" class="form-label">ژانر</label>
+            <input type="text" class="form-control" id="Genre" asp-for="AddBook.Genre" />
+        </div>
+        <div class="col-md-2">
+           <div class="form-label">موجود</div>
+           <label for="input" class="form-label fw-bold">هست</label>
+           @Html.CheckBoxFor(m => m.AddBook.Availabale)
+           <label for="input2" class="form-label fw-bold">نیست</label>
+           @Html.CheckBoxFor(m => m.AddBook.Availabale)
+        </div>
+        <div class="col-md-5">
+            <label for="Author" class="form-label">نویسنده</label>
+            <input type="text" class="form-control" id="Author" asp-for="AddBook.Author" />
+        </div> 
+        <button type="submit" class="btn-lg btn-outline-primary my-3 border-light">اضافه کردن کتاب</button>
+    </div>
+</form>
+       @if(ViewData["Success"] != null)
+    {
+           <script type="text/javascript">  
+            window.onload = function () {  
+                alert("@ViewData["Success"]");  
+            };  
+        </script>
+    }
+        @if(ViewData["Unsuccessfull"] != null)
+    {
+           <script type="text/javascript">  
+            window.onload = function () {  
+                alert("@ViewData["Unsuccessfull"]");  
+            };  
+        </script>
+    }
