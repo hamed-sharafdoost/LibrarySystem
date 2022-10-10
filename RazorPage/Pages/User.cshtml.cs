@@ -36,15 +36,12 @@ namespace RazorPage.Pages
                 {
                     foreach (int i in Ids)
                     {
-                        book = _context.Books.SingleOrDefault(c => c.BooksId == i);
-                        book.Availabale = false;
                         var borrower = new Borrower { BooksId = i, BorrowExDate = DateTime.Now.AddDays(14) };
                         borrower.UserBorrowers = new List<UserBorrower>() {
                         new UserBorrower
                         {
                             Borrower = borrower,User = user
                         } };
-                        _context.Books.Update(book);
                         _context.Borrowers.Add(borrower);
                         _context.SaveChanges();
                     }

@@ -9,6 +9,7 @@ namespace RazorPage.Pages
     {
         public User user;
         public Books book;
+        public int Count;
         public List<UserBorrower> userborrower { get; set; }
         [BindProperty]
         public int BooksId { get; set; }
@@ -23,6 +24,15 @@ namespace RazorPage.Pages
         {
             var userid = _context.Users.SingleOrDefault(c => c.Email == Request.Cookies["Email"].ToString()).UserId;
             userborrower = _context.UserBorrowers.Where(c => c.UserId == userid).ToList();
+            foreach (var list in userborrower)
+            {
+                var findbook = _context.Borrowers.Include(v => v.Books).FirstOrDefault(c => c.BorrowerId == list.BorrowerId);
+                Count = _context.Books.Count(v => v.BooksId == findbook.Books.BooksId && findbook.Books.Availabale == true);
+            }
+            if (userborrower.Count > 2 || Count <= 0)
+            {
+                ViewData["disable"] = "disable";
+            }
         }
         public IActionResult OnPost()
         {

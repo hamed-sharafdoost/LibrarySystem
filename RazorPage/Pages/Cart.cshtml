@@ -31,8 +31,15 @@
                 <td>@Model.borrower1.Books.Genre</td>
                 <td>@Model.borrower1.Books.Description</td>
                 <td>@Model.borrower1.BorrowExDate</td>
-                <td><input type="submit" class="bi bi-x-circle text-danger" value="@Model.borrower1.Books.BooksId" name="BooksId" /></td>
-            </tr>
+                    @if (Model.borrower1.Books.Availabale)
+                    {
+                        <td><input type="submit" class="bi bi-x-circle text-danger" value="@Model.borrower1.Books.BooksId" name="BooksId" /></td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                </tr>
         }
     </tbody>
     </table>
@@ -45,6 +52,7 @@
         <input type="submit" class="btn-primary btn" value ="ثبت امانت"disabled />
     }
 </form>
+<h1 class="display-5 text-danger mt-5">هر کاربر مجاز به امانت دو کتاب در ماه است</h1>
 
 
 
