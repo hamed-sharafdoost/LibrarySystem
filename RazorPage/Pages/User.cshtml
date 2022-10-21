@@ -19,7 +19,14 @@
             };  
         </script>
     }
-
+     @if(ViewData["SearchResult"] != null)
+    {
+           <script type="text/javascript">  
+            window.onload = function () {  
+                alert("@ViewData["SearchResult"]");  
+            };  
+        </script>
+    }
     <form method="post">
 <table class="table table-dark">
     <thead class="table-dark">

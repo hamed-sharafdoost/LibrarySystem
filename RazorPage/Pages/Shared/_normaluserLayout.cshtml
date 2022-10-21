@@ -1,5 +1,4 @@
-﻿
-@using Microsoft.AspNetCore.Mvc
+﻿@using Microsoft.AspNetCore.Mvc
 <!DOCTYPE html>
 <html  dir="rtl" lang="fa">
 <head>
@@ -30,20 +29,17 @@
                             <a class="nav-link" asp-page="/Cart">کتاب های انتخاب شده</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-page="/Index">خروج</a>
+                              <a class="nav-link" asp-page="/Search">جستجو</a>
                         </li>
-                        <li class="nav-item">
-                              <form class="my-2 my-lg-0" method="post">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                              </form>
+                                  <li class="nav-item">
+                            <a class="nav-link" asp-page="/Index">خروج</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-        <div class="h-75 container-lg">
+        <div class="h-75 container-lg container-sm container-md">
             @RenderBody()
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

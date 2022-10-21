@@ -7,6 +7,8 @@ namespace RazorPage.Pages
 {
     public class UserModel : PageModel
     {
+        [BindProperty]
+        public string search { get; set; }
         public Books book;
         [BindProperty(SupportsGet =true)]
         public IEnumerable<Books> books { get; set; }

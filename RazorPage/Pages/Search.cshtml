@@ -1,0 +1,64 @@
+﻿@page
+@model RazorPage.Pages.SearchModel
+@{
+    Layout = "_normaluserLayout";
+}
+
+        @if(TempData["Limit2"] != null)
+    {
+           <script type="text/javascript">  
+            window.onload = function () {  
+                alert("@TempData["Limit2"]");  
+            };  
+        </script>
+    }
+
+     <form class="d-flex" role="search" method="post">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" asp-for="searchparam">
+      <button class="btn btn-outline-success" type="submit" asp-page="/Search">Search</button>
+    </form>
+    @if(Model.books != null)
+    {
+        <form class="form" asp-page-handler="Choose" method="post">
+        <table class="table-dark table">
+            <thead>
+                <tr>
+                <th>آی دی کتاب</th>
+                <th>اسم کتاب</th>
+                <th>نویسنده</th>
+                <th>ژانر</th>
+                <th>توضیحات</th>
+                <th>موجودی</th>
+                <th>آخرین تاریخ امانت</th>
+                <th>انتخاب برای امانت</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var book in Model.books)
+                {
+                    <tr>
+                        <td>@book.BooksId</td>
+                        <td>@book.Title</td>
+                        <td>@book.Author</td>
+                        <td>@book.Genre</td>
+                        <td>@book.Description</td>
+                        @if(book.Availabale == true)
+                        {
+                            <td>موجود</td>
+                            <td>@book.LastBorrowdate</td>
+                            <td><input type ="checkbox" class="fs-6" name="checks" value="@book.BooksId"/></td>
+                        }
+                        @if(book.Availabale == false)
+                        {
+                             <td>ناموجود</td>
+                            <td><input type ="hidden"/></td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table> 
+        <nav class="navbar fixed-bottom navbar-light bg-light justify-content-center">
+        <input type="submit" class="btn-primary btn" value="افزودن کتاب ها"/>
+        </nav>
+        </form>
+}
