@@ -1,0 +1,71 @@
+﻿@page
+@model RazorPage.Pages.Admin.EdituserModel
+@using LibraryDatabase
+@{
+    Layout = "./Shared/_adminLayout";
+}
+ <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.js"></script>
+ <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+ <script 
+ src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.mi
+ n.js"></script>
+<form class="form" method="post">
+ 
+    <table class="table-dark table">
+        <thead>
+            <tr>
+                <td>آی دی</td>
+                <td>ایمیل</td>
+                <td>نام</td>
+                <td>نام خانوادگی</td>
+                <td>شماره تماس</td>
+                <td>تعداد کتاب های امانی</td>
+                <td>تعداد کتاب های اهدا شده</td>
+                <td>شهر</td>
+                <td>خیابان</td>
+                <td>حذف کاربر</td>
+                <td>ویرایش اطلاعات</td>
+            </tr>
+        </thead>
+        <tbody>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            @foreach(User user in Model.Users)
+            {
+                <tr>
+                @if(user.UserId == (ViewData["Edit"] != null ? (int)ViewData["Edit"] : -1))
+                {
+                    <td>@user.UserId</td>
+                    <td><input type="email" value="@user.Email" asp-for="edit.Email"/></td>
+                    <td><input type="text" class="form-control" placeholder="@user.Name" asp-for="edit.Name"/></td>
+                    <span asp-validation-for="edit.Name" class="text-danger"></span>
+                    <td><input type="text" class="form-control" placeholder="@user.FamilyName" asp-for="edit.FamilyName"/></td>
+                    <span asp-validation-for="edit.FamilyName" class="text-danger"></span>
+                    <td><input type="text" class="form-control" placeholder="@user.PhoneNumber" asp-for="edit.phonenumber"/></td>
+                    <span asp-validation-for="edit.phonenumber" class="text-danger"></span>
+                    <td><input type="number" class="form-control" placeholder="@user.NOborrwedbooks" asp-for="edit.NoBorrowedbooks"/></td>
+                    <td><input type="number" class="form-control" placeholder="@user.NOLendedBooks" asp-for="edit.NoLendedbooks"/></td>
+                    <td><input type="text" class="form-control" placeholder="@user.address.City" asp-for="edit.City"/></td>
+                    <td><input type="text" class="form-control" placeholder="@user.address.Street" asp-for="edit.Street"/></td>
+                    <td></td>
+                    <td><input type="submit" class="btn btn-primary" asp-page-handler="Update" name="UserId" value="@user.UserId"/></td> 
+                }
+                else
+                {
+                <td>@user.UserId</td>
+                <td>@user.Email</td>
+                <td>@user.Name</td>
+                <td>@user.FamilyName</td>
+                <td>@user.PhoneNumber</td>
+                <td>@user.NOborrwedbooks</td>
+                <td>@user.NOLendedBooks</td>
+                <td>@user.address.City</td>
+                <td>@user.address.Street</td>
+                <td><input type="submit" class="btn btn-danger" asp-page-handler="Delete" name="UserId" value="@user.UserId"/></td>
+                <td><input type="submit" class="btn btn-primary" asp-page-handler="Edit" name="UserId" value="@user.UserId"/></td>
+                }
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</form>

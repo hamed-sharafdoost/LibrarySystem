@@ -16,5 +16,10 @@ namespace RazorPage.Pages.Admin
         {
             books = _context.Set<Books>().AsEnumerable();
         }
+        public void OnGetUsers()
+        {
+            var users = _context.Set<User>().AsEnumerable();
+
+        }
     }
 }
