@@ -53,6 +53,7 @@ namespace RazorPage.Pages.Admin
                 user.PhoneNumber = edit.phonenumber;
                 user.NOborrwedbooks = edit.NoBorrowedbooks;
                 user.NOLendedBooks = edit.NoLendedbooks;
+                user.Password = user.Password;
                 user.address.City = edit.City;
                 user.address.Street = edit.Street;
                 _context.Users.Update(user);

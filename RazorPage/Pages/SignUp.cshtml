@@ -1,6 +1,6 @@
 ﻿@page
 @model RazorPage.Pages.SignUpModel
-
+<div asp-validation-summary=All class="text-danger"></div>
 <form class="container-lg container-xxl container-md justify-content-center" method="post">
     <div class="form-row">
         <div class="form-group my-3">
@@ -24,6 +24,7 @@
         <label for="Phone">شماره همراه</label>
         <input type="text" class="form-control" id="Phone" placeholder="شماره همراه..." asp-for="SignUp.PhoneNumber" />
         <span class="text-danger h6 fw-light">کیبورد خود را انگلیسی کنید!</span>
+        <span asp-validation-for="SignUp.PhoneNumber" class="text-danger"></span>
     </div>
       <div class="form-group my-3">
         <label for="Email">ایمیل</label>

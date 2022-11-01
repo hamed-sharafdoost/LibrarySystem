@@ -5,6 +5,7 @@
     Layout = "./Shared/_adminLayout";
     int i = 0;
 }
+<form class="form" method="post">
 <table class="table table-dark">
     <thead class="table-dark">
         <tr class="table-dark">
@@ -15,13 +16,37 @@
         <th>توضیحات</th>
         <th>موجودی</th>
         <th>آخرین تاریخ امانت</th>
+        @if(ViewData["Edit"] != null)
+         {
+               <th>ثبت اطلاعات</th>
+         }
+        else
+        {
+              <th>ویرایش اطلاعات</th>
+        }
         </tr>
     </thead>
     <tbody class="table-dark">
+        <div asp-validation-summary=All class="text-danger"></div>
         @foreach(var book in Model.books)
         {
             i++;
             <tr class="table-dark">
+                @if(book.BooksId == (ViewData["Edit"] != null ? (int)ViewData["Edit"] : -1))
+                {
+                        <td>@i</td>
+                        <td><input type="text" class="form-control" placeholder="@book.Title" asp-for="book.Title"/></td>
+                        <span asp-validation-for="book.Title" class="text-danger"></span>
+                        <td><input type="text" class="form-control" placeholder="@book.Author" asp-for="book.Author"/></td>
+                        <span asp-validation-for="book.Author" class="text-danger"></span>
+                        <td><input type="text" class="form-control" placeholder="@book.Genre" asp-for="book.Genre"/></td>
+                        <td><input type="text" class="form-control" placeholder ="@book.Description" asp-for="book.Description"/></td>
+                        <td><label>موجود هست؟</label><input type="checkbox" asp-for="book.Availabale"/></td>
+                        <td><input type="date" class="form-control" placeholder="@book.LastBorrowdate" asp-for="book.LastBorrowdate"/></td>
+                        <td><input type="submit" class="btn btn-primary" asp-page-handler="Update" name="BookId" value="@book.BooksId"/></td>
+                }
+                else
+                {
                 <td>@i</td>
                 <td>@book.Title</td>
                 <td>@book.Author</td>
@@ -36,7 +61,11 @@
                     <td>ناموجود</td>
                 }
                 <td>@book.LastBorrowdate</td>
+                <td><input type="submit" class="btn btn-primary" asp-page-handler="Edit" name="BookId" value="@book.BooksId"/></td>
+                }
+                
             </tr>
         }
     </tbody>
 </table>
+</form>

@@ -21,18 +21,22 @@ namespace RazorPage.Pages
         public IActionResult OnPost()
         {
             var user = SignUp.Adapt<User>();
-
-            _context.Users.Add(user);
-            if(_context.SaveChanges() > 0)
+            if (ModelState.IsValid)
             {
-                ViewData["Success"] = "You successfully SignedUp";
-                return RedirectToPage("/Index");
+                _context.Users.Add(user);
+                if (_context.SaveChanges() > 0)
+                {
+                    ViewData["Success"] = "You successfully SignedUp";
+                    return RedirectToPage("/Index");
+                }
+                else
+                {
+                    ViewData["Unsuccess"] = "Try again!Something is wrong";
+                    return Page();
+                }
             }
             else
-            {
-                ViewData["Unsuccess"] = "Try again!Something is wrong";
                 return Page();
-            }
 
         }
     }

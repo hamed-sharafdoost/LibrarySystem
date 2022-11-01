@@ -24,15 +24,15 @@
                 Model.borrower1 = Model._context.Borrowers.Include(c => c.Books).SingleOrDefault(b => b.BorrowerId == borrow.BorrowerId);
                 i++;
                 <tr class="table-dark">
-                <td>@i</td>
-                <td>@Model.borrower1.Books.Title</td>
-                <td>@Model.borrower1.Books.Author</td>
-                <td>@Model.borrower1.Books.Genre</td>
-                <td>@Model.borrower1.Books.Description</td>
-                <td>@Model.borrower1.BorrowExDate</td>
                     @if (Model.borrower1.Books.Availabale)
                     {
-                        <td><input type="submit" class="bi bi-x-circle text-danger" value="@Model.borrower1.Books.BooksId" name="BooksId" /></td>
+                        <td>@i</td>
+                        <td>@Model.borrower1.Books.Title</td>
+                        <td>@Model.borrower1.Books.Author</td>
+                        <td>@Model.borrower1.Books.Genre</td>
+                        <td>@Model.borrower1.Books.Description</td>
+                        <td>@Model.borrower1.BorrowExDate</td>
+                        <td><input type="submit" class="btn btn-danger" value="@Model.borrower1.Books.BooksId" name="BooksId" /></td>
                     }
                     else
                     {

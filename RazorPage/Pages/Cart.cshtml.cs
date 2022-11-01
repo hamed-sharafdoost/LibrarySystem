@@ -39,10 +39,10 @@ namespace RazorPage.Pages
             user = _context.Users.SingleOrDefault(b => b.Email == Request.Cookies["Email"]);
             var userid = _context.Users.SingleOrDefault(c => c.Email == Request.Cookies["Email"].ToString()).UserId;
             userborrower = _context.UserBorrowers.Where(c => c.UserId == userid).ToList();
+            book = _context.Books.SingleOrDefault(b => b.BooksId == BooksId);
             if (string.IsNullOrEmpty(Request.Form["Sub"]))
             {
                 var borrower = _context.Borrowers.SingleOrDefault(n => n.BooksId == BooksId);
-                book = _context.Books.SingleOrDefault(b => b.BooksId == BooksId);
                 book.Availabale = true;
                 if (borrower != null)
                 {
@@ -55,17 +55,27 @@ namespace RazorPage.Pages
                     return RedirectToPage("Cart");
                 }
                 else
+                {
                     return RedirectToPage("Cart");
+                }
             }
             else
             {
-                user.NOborrwedbooks = _context.UserBorrowers.Count(x => x.UserId == user.UserId);
+                var finalsubmit = _context.UserBorrowers.Include(v => v.Borrower).Where(x => x.UserId == user.UserId).ToList();
+                foreach(var select in finalsubmit)
+                {
+                    var selectbook = _context.Books.FirstOrDefault(b => b.BooksId == select.Borrower.BooksId);
+                    selectbook.Availabale = false;
+                    _context.Books.Update(selectbook);
+                    _context.SaveChanges(true);
+                }
+                user.NOborrwedbooks = finalsubmit.Count();
                 _context.Users.Update(user);
                 _context.SaveChanges();
                 ViewData["disable"] = "disable";
-                RedirectToPage("Cart");
+                return Page();
             }
-            return Page();
+            
         }
     }
 }
