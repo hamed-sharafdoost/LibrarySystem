@@ -1,4 +1,9 @@
 using LibraryDatabase;
+using NLog;
+using NLog.Web;
+
+var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+logger.Debug("init main");
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,6 +16,8 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+builder.Logging.ClearProviders();
+builder.Host.UseNLog();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

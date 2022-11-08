@@ -1,0 +1,39 @@
+﻿@page
+@model RazorPage.Pages.Admin.BorrowersModel
+@{
+    Layout = "./Shared/_adminLayout";
+}
+<form method="post">
+    <table class="table-dark table">
+        <thead>
+            <th>اسم</th>
+            <th>شناسه کاربری</th>
+            <th>اسم کتاب</th>
+            <th>شناسه کتاب</th>
+            <th>آخرین زمان امانت</th>
+            <th>حذف کتاب</th>
+       </thead>
+        <tbody>
+            
+                @if (Model.borrowers2 != null)
+                {
+                    @foreach (var b in Model.borrowers2)
+                    {
+                        <tr>
+                        <td>@b.user.Name</td>
+                        <td>@b.user.UserId</td>
+                        <td>@b.book.Title</td>
+                        <td>@b.book.BooksId</td>
+                        <td>@b.book.LastBorrowdate</td>
+                        <td><input type="submit" class="btn btn-danger" asp-page-handler="Delete" value="@b.book.BooksId" name="BooksId"/></td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <td>every thing is good!just relax</td>
+                }
+            
+        </tbody>
+    </table>
+</form>

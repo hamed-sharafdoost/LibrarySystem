@@ -8,7 +8,6 @@ namespace RazorPage.Pages.Admin
 {
     public class AddModel : PageModel
     {
-
         [BindProperty]
         public AddBook AddBook { get; set; }
         private DbContextLib _context;
@@ -41,7 +40,6 @@ namespace RazorPage.Pages.Admin
                 ViewData["Unsuccessfull"] = "Something is wrong.Refill the details";
                 return Page();
             }
-
         }
     }
     

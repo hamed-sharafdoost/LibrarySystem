@@ -21,17 +21,17 @@ namespace RazorPage.Pages.Admin
         {
             books = _context.Set<Books>().AsEnumerable();
         }
-        public IActionResult OnPostEdit()
+        public IActionResult OnPostEdit() // Edit and update a book by sending BookId to the view
         {
             books = _context.Set<Books>().AsEnumerable();
             ViewData["Edit"] = BookId;
             return Page();
         }
-        public IActionResult OnPostUpdate()
+        public IActionResult OnPostUpdate() // Confirm the edition and changing the database
         {
             books = _context.Set<Books>().AsEnumerable();
             Books select = _context.Books.SingleOrDefault(v => v.BooksId == BookId);
-            if (book != null && ModelState.IsValid)
+            if (book != null && ModelState.IsValid) 
             {
                 select.Title = book.Title;
                 select.Author = book.Author;

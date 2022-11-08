@@ -36,7 +36,7 @@ namespace RazorPage.Pages
                 }
                 else if (Ids.Count > 0)
                 {
-                    foreach (int i in Ids)
+                    foreach (int i in Ids) // Insert selected book into database
                     {
                         var borrower = new Borrower { BooksId = i, BorrowExDate = DateTime.Now.AddDays(14) };
                         borrower.UserBorrowers = new List<UserBorrower>() {

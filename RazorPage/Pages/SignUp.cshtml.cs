@@ -20,7 +20,7 @@ namespace RazorPage.Pages
         }
         public IActionResult OnPost()
         {
-            var user = SignUp.Adapt<User>();
+            var user = SignUp.Adapt<User>(); // Map SingUp object to User object.SingUp is a DTO
             if (ModelState.IsValid)
             {
                 _context.Users.Add(user);

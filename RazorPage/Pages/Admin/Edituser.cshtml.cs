@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using LibraryDatabase;
 using RazorPage.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace RazorPage.Pages.Admin
 {
@@ -25,9 +26,22 @@ namespace RazorPage.Pages.Admin
         }
         public IActionResult OnPostDelete()
         {
-            user = _context.Users.SingleOrDefault(c => c.UserId == UserId);
+            Books book;
+            user = _context.Users.SingleOrDefault(c => c.UserId == UserId); // find user in Users table
             if (user != null)
             {
+                var userborrower = _context.UserBorrowers.Include(n => n.Borrower).Where(b => b.UserId == user.UserId).ToList();
+                if (userborrower != null)
+                {
+                    _context.UserBorrowers.RemoveRange(userborrower); // Removing all rows related to this user in UserBorrowers table
+                    foreach (var select in userborrower) //iterating and update books and removing rows in Borrowers table related to this user
+                    {
+                       book =_context.Books.FirstOrDefault(v => v.BooksId == select.Borrower.BooksId);
+                       book.Availabale = true;
+                        _context.Books.Update(book);
+                        _context.Borrowers.Remove(select.Borrower);
+                    }
+                }
                 _context.Users.Remove(user);
                 _context.SaveChanges();
                 return RedirectToAction("");

@@ -10,11 +10,12 @@ namespace RazorPage.Pages
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
+            _logger.LogDebug(1, "Nlog injected into IndexModel");
         }
 
         public void OnGet()
         {
-
+            _logger.LogInformation("Hello,this is the index");
         }
     }
 }
