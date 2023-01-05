@@ -31,7 +31,7 @@
                 @if(user.UserId == (ViewData["Edit"] != null ? (int)ViewData["Edit"] : -1))
                 {
                     <td>@user.UserId</td>
-                    <td><input type="email" value="@user.Email" asp-for="edit.Email"/></td>
+                    <td><input type="email" placeholder="@user.Email" asp-for="edit.Email"/></td>
                     <td><input type="text" class="form-control" placeholder="@user.Name" asp-for="edit.Name"/></td>
                     <span asp-validation-for="edit.Name" class="text-danger"></span>
                     <td><input type="text" class="form-control" placeholder="@user.FamilyName" asp-for="edit.FamilyName"/></td>
